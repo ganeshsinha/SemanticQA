@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        :root {
+            --primary-color: #007acc;
+            --success-color: #2e7d32;
+            --warning-color: #ed6c02;
+            --danger-color: #d32f2f;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            width: 400px;
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .instructions strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary-color);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+            background: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card.high {
+            border-left: 4px solid var(--success-color);
+        }
+
+        .feature-card.medium {
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .feature-card.low {
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .feature-card .feature-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-color);
+        }
+
+        .priority-legend {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 12px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .priority-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .priority-dot.high {
+            background: var(--success-color);
+        }
+
+        .priority-dot.medium {
+            background: var(--warning-color);
+        }
+
+        .priority-dot.low {
+            background: var(--danger-color);
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .status-indicator.active {
+            background: var(--success-color);
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.inactive {
+            background: #ccc;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="title">🎯 SemanticQA</h1>
+                <p style="margin: -8px 0 0 0; font-size: 11px; color: #666; font-style: italic;">Playwright Locators Finder -Ganesh</p>
+            </div>
+            <div class="toggle-container">
+                <span class="toggle-label">Active</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggleExtension" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <strong>How to use:</strong>
+            1. Right-click on any element<br>
+            2. Select "SemanticQA - Get Playwright Locators"<br>
+            3. Copy the locator you need from the table
+        </div>
+
+        <div class="priority-legend">
+            <div class="priority-item">
+                <span class="priority-dot high"></span>
+                <span>High Priority</span>
+            </div>
+            <div class="priority-item">
+                <span class="priority-dot medium"></span>
+                <span>Medium</span>
+            </div>
+            <div class="priority-item">
+                <span class="priority-dot low"></span>
+                <span>Low</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card high">
+                <div class="feature-title">Semantic Locators</div>
+                getByRole, getByLabel, getByTestId
+            </div>
+            <div class="feature-card medium">
+                <div class="feature-title">Text/Placeholder</div>
+                getByText, getByPlaceholder, getByAltText
+            </div>
+            <div class="feature-card low">
+                <div class="feature-title">Fallback Locators</div>
+                CSS Selectors, XPath
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">Count Display</div>
+                Shows element count for accuracy
+            </div>
+        </div>
+
+        <div class="footer">
+            <div id="status">
+                <span class="status-indicator active" id="statusIndicator"></span>
+                <span id="statusText">Extension is active</span>
+            </div>
+            <div style="margin-top: 8px;">
+                <small>Click extension icon to toggle on/off</small>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
